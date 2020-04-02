@@ -2,19 +2,23 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
 const TextScreen = () => {
-  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <View>
-      <Text style={styles.textStyles}>Enter your name below: </Text>
+      <Text style={styles.textStyles}>Enter your password: </Text>
       <TextInput
         style={styles.textInput}
         autoCapitalize="none"
         autoCorrect={false}
-        onChangeText={textValue => setName(textValue)}
-        value={name}
+        onChangeText={textValue => setPassword(textValue)}
+        value={password}
       />
-      <Text style={styles.textStyles}>My name is: {name}</Text>
+      <Text style={styles.subTextStyles}>
+        {password.length < 5 && (
+          <Text>Password must be longer than 5 chars</Text>
+        )}
+      </Text>
     </View>
   );
 };
@@ -24,6 +28,10 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginLeft: 15,
     fontSize: 20
+  },
+  subTextStyles: {
+    marginLeft: 15,
+    fontSize: 12
   },
   textInput: {
     margin: 15,
